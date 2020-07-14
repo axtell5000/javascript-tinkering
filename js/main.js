@@ -27,9 +27,28 @@ let person = {
   age: 48,
   personInfo: function () {
     console.log(`${this.firstName}`);
-  },
+  }
 };
 
 console.log(person.age);
 console.log(person["sex"]);
 person.personInfo();
+
+// Age in days
+
+const ageInDays = () => {
+  const birthYear = prompt('What year were you born ?');
+  const ageDays = (2020 - parseInt(birthYear, 10)) * 365;
+  const h1 = document.createElement('h1');
+  const textAnswer = document.createTextNode(`You are ${ageDays} days old`);
+  h1.setAttribute('id', 'ageDays');
+  h1.appendChild(textAnswer);
+  document
+    .getElementById('flexbox-result')
+    .appendChild(h1)
+
+};
+
+const reset = () => document
+  .getElementById('ageDays')
+  .remove();

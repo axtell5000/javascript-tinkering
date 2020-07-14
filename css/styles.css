@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+h2 {
+  text-align: center;
+}
+
+.flexbox-container {
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 20px auto;
+  padding: 15px;
+  width: 75%;
+}
+
+.flexbox-container div {
+  align-items: center;
+  border: 1px solid black;
+  display: flex;
+  padding: 10px;
+}
