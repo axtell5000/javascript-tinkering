@@ -52,3 +52,13 @@ const ageInDays = () => {
 const reset = () => document
   .getElementById('ageDays')
   .remove();
+
+// Generate cat function
+const catHolder = document.querySelector('.flexbox-cat');
+
+const genCat = () => {
+  const catImage = document.createElement('img');
+  catImage.src = 'https://cataas.com/cat/gif';
+  catImage.setAttribute('alt', 'Random Cat');
+  catHolder.appendChild(catImage);
+}
