@@ -61,4 +61,96 @@ const genCat = () => {
   catImage.src = 'https://cataas.com/cat/gif';
   catImage.setAttribute('alt', 'Random Cat');
   catHolder.appendChild(catImage);
+};
+
+// Rock Paper Scissors game
+const rpsGame = (yourChoice) => {
+  let humanChoice,
+    botChoice;
+  humanChoice = yourChoice.id;
+  botChoice = numToChoice(rpsRandomInt());
+  console.log(botChoice, 'bot choice')
+
+  const results = decideWinner(humanChoice, botChoice);
+  console.log(results);
+
+  const message = finalMessage(results);
+  console.log(message.message)
+  rpsFrontend(humanChoice, botChoice, message)
+}
+
+const rpsRandomInt = () => Math.floor(Math.random() * 3)
+
+const numToChoice = (num) => ['rock', 'paper', 'scissors'][num]
+
+const decideWinner = (yourChoice, botChoice) => {
+  const rpsDatabase = {
+    'rock': {
+      'scissors': 1,
+      'rock': 0.5,
+      'paper': 0
+    },
+    'paper': {
+      'rock': 1,
+      'paper': 0.5,
+      'scissors': 0
+    },
+    'scissors': {
+      'paper': 1,
+      'scissors': 0.5,
+      'rock': 0
+    }
+  };
+
+  const yourScore = rpsDatabase[yourChoice][botChoice];
+  const computerScore = rpsDatabase[botChoice][yourChoice];
+
+  return [yourScore, computerScore];
+}
+
+const finalMessage = ([yourScore, computerScore]) => {
+  if (yourScore === 0) {
+    return {'message': 'You lost', 'color': 'red'};
+  } else if (yourScore === 0.5) {
+    return {'message': 'You tied', 'color': 'yellow'};
+  } else {
+    return {'message': 'You won', 'color': 'green'};
+  }
+}
+
+const rpsFrontend = (humanChoice, computerChoice, message) => {
+  const imageDatabase = {
+    'rock': document
+      .getElementById('rock')
+      .src,
+    'paper': document
+      .getElementById('paper')
+      .src,
+    'scissors': document
+      .getElementById('scissors')
+      .src
+  }
+
+  const imageList = document.querySelectorAll('#rps-div img');
+  imageList.forEach(image => image.remove());
+
+  const humanChoiceDiv = document.createElement('div');
+  const botChoiceDiv = document.createElement('div');
+  const messageDiv = document.createElement('div');
+
+  humanChoiceDiv.innerHTML = `<img src="${imageDatabase[humanChoice]}" alt="${humanChoice}" class="on" />`;
+  messageDiv.innerHTML = `<h1 style="color: ${message.color}; font-size: 60px; padding: 30px;">${message.message}</h1>`
+  botChoiceDiv.innerHTML = `<img src="${imageDatabase[computerChoice]}" alt="${computerChoice}" class="on-red" />`;
+
+  document
+    .getElementById('rps-div')
+    .appendChild(humanChoiceDiv);
+
+  document
+    .getElementById('rps-div')
+    .appendChild(messageDiv);
+
+  document
+    .getElementById('rps-div')
+    .appendChild(botChoiceDiv);
 }

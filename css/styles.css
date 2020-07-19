@@ -55,10 +55,16 @@ h2 {
 /* For Rock Paper, Scissors game */
 
 #rps-div img {
+  cursor: pointer;
   height: 200px;
   width: 200px;
 }
 
-#rps-div img:hover {
+#rps-div img:hover,
+#rps-div img.on {
   box-shadow: 0px 10px 50px rgba(37, 50, 233, 1);
+}
+
+#rps-div img.on-red {
+  box-shadow: 0px 10px 50px rgba(243, 38, 24, 1);
 }
