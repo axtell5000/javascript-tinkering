@@ -154,3 +154,74 @@ const rpsFrontend = (humanChoice, computerChoice, message) => {
     .getElementById('rps-div')
     .appendChild(botChoiceDiv);
 }
+
+// Colour change challenge
+
+const allButtons = document.querySelectorAll('.flexbox-color button');
+let copyBtns = [];
+for (let i = 0; i < allButtons.length; i++) {
+  copyBtns.push(allButtons[i].classList[1]);
+}
+
+console.log(copyBtns, 'copy');
+
+const buttonColorChange = (button) => {
+  if (button.value === 'red') {
+    buttonRed();
+  } else if (button.value === 'green') {
+    buttonGreen();
+  } else if (button.value === 'reset') {
+    buttonColorReset();
+  } else if (button.value === 'random') {
+    randomColors();
+  }
+};
+
+const buttonRed = () => {
+  for (let i = 0; i < allButtons.length; i++) {
+    allButtons[i]
+      .classList
+      .remove(allButtons[i].classList[1]);
+    allButtons[i]
+      .classList
+      .add('btn-danger');
+  }
+};
+
+const buttonGreen = () => {
+  for (let i = 0; i < allButtons.length; i++) {
+    allButtons[i]
+      .classList
+      .remove(allButtons[i].classList[1]);
+    allButtons[i]
+      .classList
+      .add('btn-success');
+  }
+};
+
+const buttonColorReset = () => {
+  console.log(copyBtns, 'lll');
+  for (let i = 0; i < allButtons.length; i++) {
+    allButtons[i]
+      .classList
+      .remove(allButtons[i].classList[1]);
+    allButtons[i]
+      .classList
+      .add(copyBtns[i]);
+  }
+
+};
+
+const randomColors = () => {
+  const choices = ['btn-primary', 'btn-danger', 'btn-success', 'btn-warning'];
+
+  for (let i = 0; i < allButtons.length; i++) {
+    let randomNumber = Math.floor(Math.random() * 4);
+    allButtons[i]
+      .classList
+      .remove(allButtons[i].classList[1]);
+    allButtons[i]
+      .classList
+      .add(choices[randomNumber]);
+  }
+}
