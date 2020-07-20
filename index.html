@@ -53,7 +53,7 @@
     </div>
 
     <div class="container-3">
-      <h2>Rock, Paper, Scissors</h2>
+      <h2>Challenge 3: Rock, Paper, Scissors</h2>
       <p>Please make your selection below</p>
       <div class="flexbox-rps" id="rps-div">
         <img
@@ -74,6 +74,29 @@
           id="scissors"
           onclick="rpsGame(this)"
         />
+      </div>
+    </div>
+
+    <div class="container-4">
+      <h2 id="change-color">Challenge 4: Change colours of all the buttons</h2>
+      <div class="flexbox-color">
+        <form action="">
+          <select
+            name="background-change"
+            id="background-change"
+            onchange="buttonColorChange(this)"
+          >
+            <option value="random">Random</option>
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+            <option value="reset">Reset</option>
+          </select>
+        </form>
+
+        <button title="Wee" class="btn btn-primary">Wee</button>
+        <button title="Yahoo" class="btn btn-danger">Yahoo</button>
+        <button title="Google" class="btn btn-warning">Google</button>
+        <button title="Facebook" class="btn btn-success">Facebook</button>
       </div>
     </div>
 
