@@ -1,105 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="./css/styles.css" />
-    <title>Tinkering with JavaScript</title>
-  </head>
 
-  <body>
-    <div class="container-1">
-      <h2>Challenge 1: Your age in days</h2>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="./css/styles.css" />
+  <title>Tinkering with JavaScript</title>
+</head>
 
-      <div class="flexbox-container">
-        <div>
-          <button
-            class="btn btn-primary"
-            title="Click me"
-            onclick="ageInDays()"
-          >
-            Click me
-          </button>
-        </div>
-        <div>
-          <button class="btn btn-danger" title="Reset" onclick="reset()">
-            Reset
-          </button>
-        </div>
+<body>
+  <div class="container-1">
+    <h2>Challenge 1: Your age in days</h2>
+
+    <div class="flexbox-container">
+      <div>
+        <button class="btn btn-primary" title="Click me" onclick="ageInDays()">
+          Click me
+        </button>
       </div>
-
-      <div class="flexbox-container">
-        <div id="flexbox-result"></div>
+      <div>
+        <button class="btn btn-danger" title="Reset" onclick="reset()">
+          Reset
+        </button>
       </div>
     </div>
 
-    <div class="container-2">
-      <h2>Challenge 2: Cat Generator</h2>
-      <button
-        class="btn btn-success"
-        id="gen-btn"
-        onclick="genCat()"
-        title="Generate Cat"
-      >
-        Generate Cat
-      </button>
-      <div class="flexbox-cat"></div>
+    <div class="flexbox-container">
+      <div id="flexbox-result"></div>
     </div>
+  </div>
 
-    <div class="container-3">
-      <h2>Challenge 3: Rock, Paper, Scissors</h2>
-      <p>Please make your selection below</p>
-      <div class="flexbox-rps" id="rps-div">
-        <img
-          src="http://images.clipartpanda.com/rock-clipart-clipart-harvestable-resources-rock.png"
-          alt="rock"
-          id="rock"
-          onclick="rpsGame(this)"
-        />
-        <img
-          src="http://images.clipartpanda.com/paper-clipart-nexxuz-Loose-Leaf-Paper.png"
-          alt="paper"
-          id="paper"
-          onclick="rpsGame(this)"
-        />
-        <img
-          src="http://images.clipartpanda.com/scissors-clip-art-scissors-clip-art-5.jpg"
-          alt="scissors"
-          id="scissors"
-          onclick="rpsGame(this)"
-        />
+  <div class="container-2">
+    <h2>Challenge 2: Cat Generator</h2>
+    <button class="btn btn-success" id="gen-btn" onclick="genCat()" title="Generate Cat">
+      Generate Cat
+    </button>
+    <div class="flexbox-cat"></div>
+  </div>
+
+  <div class="container-3">
+    <h2>Challenge 3: Rock, Paper, Scissors</h2>
+    <p>Please make your selection below</p>
+    <div class="flexbox-rps" id="rps-div">
+      <img src="http://images.clipartpanda.com/rock-clipart-clipart-harvestable-resources-rock.png" alt="rock" id="rock"
+        onclick="rpsGame(this)" />
+      <img src="http://images.clipartpanda.com/paper-clipart-nexxuz-Loose-Leaf-Paper.png" alt="paper" id="paper"
+        onclick="rpsGame(this)" />
+      <img src="http://images.clipartpanda.com/scissors-clip-art-scissors-clip-art-5.jpg" alt="scissors" id="scissors"
+        onclick="rpsGame(this)" />
+    </div>
+  </div>
+
+  <div class="container-4">
+    <h2 id="change-color">Challenge 4: Change colours of all the buttons</h2>
+    <div class="flexbox-color">
+      <form action="">
+        <select name="background-change" id="background-change" onchange="buttonColorChange(this)">
+          <option value="random">Random</option>
+          <option value="red">Red</option>
+          <option value="green">Green</option>
+          <option value="reset">Reset</option>
+        </select>
+      </form>
+
+      <button title="Wee" class="btn btn-primary">Wee</button>
+      <button title="Yahoo" class="btn btn-danger">Yahoo</button>
+      <button title="Google" class="btn btn-warning">Google</button>
+      <button title="Facebook" class="btn btn-success">Facebook</button>
+    </div>
+  </div>
+
+  <div class="container-5">
+    <h2>Challenge 5: Blackjack Game</h2>
+    <h3><span id="blackjack-result">Let's Play</span></h3>
+    <div class="flex-blackjack-row1">
+      <div id="your-box">
+        <h2>You: <span id="your-blackjack-total">0</span></h2>
+      </div>
+      <div id="dealer-box">
+        <h2>Dealer: <span id="dealer-blackjack-total">0</span></h2>
       </div>
     </div>
 
-    <div class="container-4">
-      <h2 id="change-color">Challenge 4: Change colours of all the buttons</h2>
-      <div class="flexbox-color">
-        <form action="">
-          <select
-            name="background-change"
-            id="background-change"
-            onchange="buttonColorChange(this)"
-          >
-            <option value="random">Random</option>
-            <option value="red">Red</option>
-            <option value="green">Green</option>
-            <option value="reset">Reset</option>
-          </select>
-        </form>
-
-        <button title="Wee" class="btn btn-primary">Wee</button>
-        <button title="Yahoo" class="btn btn-danger">Yahoo</button>
-        <button title="Google" class="btn btn-warning">Google</button>
-        <button title="Facebook" class="btn btn-success">Facebook</button>
+    <div class="flex-blackjack-row2">
+      <div>
+        <button id="bj-hit" title="Hit" class="btn-lg mr-2 btn-primary">Hit</button>
+        <button id="bj-stand" title="Stand" class="btn-lg mr-2 btn-warning">Stand</button>
+        <button id="bj-deal" title="Deal" class="btn-lg btn-danger">Deal</button>
       </div>
     </div>
 
-    <script src="./js/main.js"></script>
-  </body>
+    <div class="flex-blackjack-row3">
+      <table>
+        <tr>
+          <th>Wins</th>
+          <th>Losses</th>
+          <th>Draws</th>
+        </tr>
+        <tr>
+          <td><span id="wins">0</span></td>
+          <td><span id="losses"></span>0</span></td>
+          <td><span id="draws"></span>0</span></td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+  <script src="./js/main.js"></script>
+</body>
+
 </html>
