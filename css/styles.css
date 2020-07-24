@@ -37,7 +37,6 @@ h2 {
   width: 75%;
 }
 
-
 #gen-btn {
   margin: 20px 0;
 }
@@ -68,23 +67,36 @@ h2 {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-
 }
 
 .flex-blackjack-row1,
 .flex-blackjack-row2 {
-  background: url('https://lh3.googleusercontent.com/proxy/v4OEj9COXvKFT2yOTFw6Hdf-3gmb9fZzYgCqiQYJ-ssI9RVh0K1bHtA7fnYHIOp_OgAbnZcq4uaBvp8iZcOAbRV5e17aGG9-t93cdt0l94Gf0AkhR-zUe5KNNMFstEWSJ-AoSIOdn05pcviA3bBXfM2VGj1Otsf3h9OZzQ') no-repeat center;
+  background: url("/images/bj-background.jpg") no-repeat center;
   background-size: cover;
   color: #ffffff;
-
 }
 
 .flex-blackjack-row1 div {
   border: 1px solid black;
-  height: 350px;
+  min-height: 350px;
   flex: 1;
   padding: 15px;
   text-align: center;
+}
+
+.flex-blackjack-row1 div img {
+  height: 210px;
+  margin-bottom: 15px;
+  margin-left: 15px;
+  width: 150px;
+}
+
+.flex-blackjack-row1 div img:first-of-type {
+  margin-left: 0;
+}
+
+.flex-blackjack-row1 h2 {
+  margin-bottom: 20px;
 }
 
 .flex-blackjack-row2 button,

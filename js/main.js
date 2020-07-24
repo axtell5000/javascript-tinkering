@@ -37,29 +37,28 @@ person.personInfo();
 // Age in days
 
 const ageInDays = () => {
-  const birthYear = prompt('What year were you born ?');
+  const birthYear = prompt("What year were you born ?");
   const ageDays = (2020 - parseInt(birthYear, 10)) * 365;
-  const h1 = document.createElement('h1');
+  const h1 = document.createElement("h1");
   const textAnswer = document.createTextNode(`You are ${ageDays} days old`);
-  h1.setAttribute('id', 'ageDays');
+  h1.setAttribute("id", "ageDays");
   h1.appendChild(textAnswer);
   document
-    .getElementById('flexbox-result')
-    .appendChild(h1)
-
+    .getElementById("flexbox-result")
+    .appendChild(h1);
 };
 
 const reset = () => document
-  .getElementById('ageDays')
+  .getElementById("ageDays")
   .remove();
 
 // Generate cat function
-const catHolder = document.querySelector('.flexbox-cat');
+const catHolder = document.querySelector(".flexbox-cat");
 
 const genCat = () => {
-  const catImage = document.createElement('img');
-  catImage.src = 'https://cataas.com/cat/gif';
-  catImage.setAttribute('alt', 'Random Cat');
+  const catImage = document.createElement("img");
+  catImage.src = "https://cataas.com/cat/gif";
+  catImage.setAttribute("alt", "Random Cat");
   catHolder.appendChild(catImage);
 };
 
@@ -69,36 +68,36 @@ const rpsGame = (yourChoice) => {
     botChoice;
   humanChoice = yourChoice.id;
   botChoice = numToChoice(rpsRandomInt());
-  console.log(botChoice, 'bot choice')
+  console.log(botChoice, "bot choice");
 
   const results = decideWinner(humanChoice, botChoice);
   console.log(results);
 
   const message = finalMessage(results);
-  console.log(message.message)
-  rpsFrontend(humanChoice, botChoice, message)
-}
+  console.log(message.message);
+  rpsFrontend(humanChoice, botChoice, message);
+};
 
-const rpsRandomInt = () => Math.floor(Math.random() * 3)
+const rpsRandomInt = () => Math.floor(Math.random() * 3);
 
-const numToChoice = (num) => ['rock', 'paper', 'scissors'][num]
+const numToChoice = (num) => ["rock", "paper", "scissors"][num];
 
 const decideWinner = (yourChoice, botChoice) => {
   const rpsDatabase = {
-    'rock': {
-      'scissors': 1,
-      'rock': 0.5,
-      'paper': 0
+    rock: {
+      scissors: 1,
+      rock: 0.5,
+      paper: 0
     },
-    'paper': {
-      'rock': 1,
-      'paper': 0.5,
-      'scissors': 0
+    paper: {
+      rock: 1,
+      paper: 0.5,
+      scissors: 0
     },
-    'scissors': {
-      'paper': 1,
-      'scissors': 0.5,
-      'rock': 0
+    scissors: {
+      paper: 1,
+      scissors: 0.5,
+      rock: 0
     }
   };
 
@@ -106,73 +105,73 @@ const decideWinner = (yourChoice, botChoice) => {
   const computerScore = rpsDatabase[botChoice][yourChoice];
 
   return [yourScore, computerScore];
-}
+};
 
 const finalMessage = ([yourScore, computerScore]) => {
   if (yourScore === 0) {
-    return {'message': 'You lost', 'color': 'red'};
+    return {message: "You lost", color: "red"};
   } else if (yourScore === 0.5) {
-    return {'message': 'You tied', 'color': 'yellow'};
+    return {message: "You tied", color: "yellow"};
   } else {
-    return {'message': 'You won', 'color': 'green'};
+    return {message: "You won", color: "green"};
   }
-}
+};
 
 const rpsFrontend = (humanChoice, computerChoice, message) => {
   const imageDatabase = {
-    'rock': document
-      .getElementById('rock')
+    rock: document
+      .getElementById("rock")
       .src,
-    'paper': document
-      .getElementById('paper')
+    paper: document
+      .getElementById("paper")
       .src,
-    'scissors': document
-      .getElementById('scissors')
+    scissors: document
+      .getElementById("scissors")
       .src
-  }
+  };
 
-  const imageList = document.querySelectorAll('#rps-div img');
-  imageList.forEach(image => image.remove());
+  const imageList = document.querySelectorAll("#rps-div img");
+  imageList.forEach((image) => image.remove());
 
-  const humanChoiceDiv = document.createElement('div');
-  const botChoiceDiv = document.createElement('div');
-  const messageDiv = document.createElement('div');
+  const humanChoiceDiv = document.createElement("div");
+  const botChoiceDiv = document.createElement("div");
+  const messageDiv = document.createElement("div");
 
   humanChoiceDiv.innerHTML = `<img src="${imageDatabase[humanChoice]}" alt="${humanChoice}" class="on" />`;
-  messageDiv.innerHTML = `<h1 style="color: ${message.color}; font-size: 60px; padding: 30px;">${message.message}</h1>`
+  messageDiv.innerHTML = `<h1 style="color: ${message.color}; font-size: 60px; padding: 30px;">${message.message}</h1>`;
   botChoiceDiv.innerHTML = `<img src="${imageDatabase[computerChoice]}" alt="${computerChoice}" class="on-red" />`;
 
   document
-    .getElementById('rps-div')
+    .getElementById("rps-div")
     .appendChild(humanChoiceDiv);
 
   document
-    .getElementById('rps-div')
+    .getElementById("rps-div")
     .appendChild(messageDiv);
 
   document
-    .getElementById('rps-div')
+    .getElementById("rps-div")
     .appendChild(botChoiceDiv);
-}
+};
 
 // Colour change challenge
 
-const allButtons = document.querySelectorAll('.flexbox-color button');
+const allButtons = document.querySelectorAll(".flexbox-color button");
 let copyBtns = [];
 for (let i = 0; i < allButtons.length; i++) {
   copyBtns.push(allButtons[i].classList[1]);
 }
 
-console.log(copyBtns, 'copy');
+console.log(copyBtns, "copy");
 
 const buttonColorChange = (button) => {
-  if (button.value === 'red') {
+  if (button.value === "red") {
     buttonRed();
-  } else if (button.value === 'green') {
+  } else if (button.value === "green") {
     buttonGreen();
-  } else if (button.value === 'reset') {
+  } else if (button.value === "reset") {
     buttonColorReset();
-  } else if (button.value === 'random') {
+  } else if (button.value === "random") {
     randomColors();
   }
 };
@@ -184,7 +183,7 @@ const buttonRed = () => {
       .remove(allButtons[i].classList[1]);
     allButtons[i]
       .classList
-      .add('btn-danger');
+      .add("btn-danger");
   }
 };
 
@@ -195,12 +194,12 @@ const buttonGreen = () => {
       .remove(allButtons[i].classList[1]);
     allButtons[i]
       .classList
-      .add('btn-success');
+      .add("btn-success");
   }
 };
 
 const buttonColorReset = () => {
-  console.log(copyBtns, 'lll');
+  console.log(copyBtns, "lll");
   for (let i = 0; i < allButtons.length; i++) {
     allButtons[i]
       .classList
@@ -209,11 +208,10 @@ const buttonColorReset = () => {
       .classList
       .add(copyBtns[i]);
   }
-
 };
 
 const randomColors = () => {
-  const choices = ['btn-primary', 'btn-danger', 'btn-success', 'btn-warning'];
+  const choices = ["btn-primary", "btn-danger", "btn-success", "btn-warning"];
 
   for (let i = 0; i < allButtons.length; i++) {
     let randomNumber = Math.floor(Math.random() * 4);
@@ -224,4 +222,75 @@ const randomColors = () => {
       .classList
       .add(choices[randomNumber]);
   }
+};
+
+// Blackjack game
+
+const blackjackGame = {
+  you: {
+    scoreSpan: "#your-blackjack-total",
+    div: "#your-box",
+    score: 0
+  },
+  dealer: {
+    scoreSpan: "#dealer-blackjack-total",
+    div: "#dealer-box",
+    score: 0
+  },
+  cards: [
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    'J',
+    'Q',
+    'K',
+    'A'
+  ]
+};
+
+const YOU = blackjackGame.you;
+const DEALER = blackjackGame.dealer;
+const hitSound = new Audio("/sounds/swish.m4a");
+
+document
+  .querySelector("#bj-hit")
+  .addEventListener("click", bjHit);
+document
+  .querySelector("#bj-deal")
+  .addEventListener("click", bjDeal);
+
+function bjHit() {
+  let card = randomCard();
+  console.log(card);
+  showCard(card, DEALER);
+}
+
+function bjDeal() {
+  bjDealCard(DEALER);
+}
+
+function showCard(card, activePlayer) {
+  let cardImage = document.createElement("img");
+  cardImage.src = `/images/${card}.png`;
+  cardImage.setAttribute("alt", "Playing Card");
+  document
+    .querySelector(activePlayer.div)
+    .appendChild(cardImage);
+  hitSound.play();
+}
+
+function bjDealCard(activePlayer) {
+  const yourImages = document.querySelectorAll(`${activePlayer.div} img`);
+  yourImages.forEach(card => card.remove());
+}
+
+function randomCard() {
+  let randomIndex = Math.floor(Math.random() * 13);
+  return blackjackGame.cards[randomIndex];
 }
