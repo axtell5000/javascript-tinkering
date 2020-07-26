@@ -251,7 +251,23 @@ const blackjackGame = {
     'Q',
     'K',
     'A'
-  ]
+  ],
+  cardsValueMap: {
+    '2': 2,
+    '3': 3,
+    '4': 4,
+    '5': 5,
+    '6': 6,
+    '7': 7,
+    '8': 8,
+    '9': 9,
+    '10': 10,
+    'J': 10,
+    'Q': 10,
+    'K': 10,
+    'A': [1, 11]
+
+  }
 };
 
 const YOU = blackjackGame.you;
@@ -268,29 +284,85 @@ document
 function bjHit() {
   let card = randomCard();
   console.log(card);
-  showCard(card, DEALER);
+  showCard(card, YOU);
+  updateScore(card, YOU);
+  showScore(YOU);
 }
 
 function bjDeal() {
-  bjDealCard(DEALER);
+  bjDealCard(YOU);
 }
 
 function showCard(card, activePlayer) {
-  let cardImage = document.createElement("img");
-  cardImage.src = `/images/${card}.png`;
-  cardImage.setAttribute("alt", "Playing Card");
-  document
-    .querySelector(activePlayer.div)
-    .appendChild(cardImage);
-  hitSound.play();
+  if (activePlayer.score <= 21) {
+    let cardImage = document.createElement("img");
+    cardImage.src = `/images/${card}.png`;
+    cardImage.setAttribute("alt", "Playing Card");
+    document
+      .querySelector(activePlayer.div)
+      .appendChild(cardImage);
+    hitSound.play();
+  }
+
 }
 
 function bjDealCard(activePlayer) {
   const yourImages = document.querySelectorAll(`${activePlayer.div} img`);
+  YOU.score = 0;
+  DEALER.score = 0;
+
+  document
+    .querySelector(YOU.scoreSpan)
+    .style
+    .color = 'white';
+  document
+    .querySelector(DEALER.scoreSpan)
+    .style
+    .color = 'white';
+
+  document
+    .querySelector(YOU.scoreSpan)
+    .textContent = 0;
+  document
+    .querySelector(DEALER.scoreSpan)
+    .textContent = 0;
   yourImages.forEach(card => card.remove());
+
 }
 
 function randomCard() {
   let randomIndex = Math.floor(Math.random() * 13);
   return blackjackGame.cards[randomIndex];
+}
+
+function updateScore(cards, activePlayer) {
+
+  // dealing with the Ace whether its 1 or 11
+  if (cards === 'A') {
+    if (activePlayer.score + blackjackGame.cardsValueMap[cards][1] <= 21) {
+      activePlayer.score += blackjackGame.cardsValueMap[cards][1];
+    } else {
+      activePlayer.score += blackjackGame.cardsValueMap[cards][0];
+    }
+  } else {
+    activePlayer.score += blackjackGame.cardsValueMap[cards];
+  }
+
+}
+
+function showScore(activePlayer) {
+  if (activePlayer.score > 21) {
+    document
+      .querySelector(activePlayer.scoreSpan)
+      .textContent = 'BUST';
+    document
+      .querySelector(activePlayer.scoreSpan)
+      .style
+      .color = 'red';
+  } else {
+    document
+      .querySelector(activePlayer.scoreSpan)
+      .textContent = activePlayer.score;
+  }
+
 }
