@@ -219,6 +219,9 @@ const blackjackGame = {
     K: 10,
     A: [1, 11],
   },
+  wins: 0,
+  losses: 0,
+  draws: 0,
 };
 
 const YOU = blackjackGame.you;
@@ -254,7 +257,6 @@ function showCard(card, activePlayer) {
 }
 
 function bjDealCard() {
-  showResult(determineWinner());
   const yourImages = document
     .querySelector("#your-box")
     .querySelectorAll("img");
@@ -315,6 +317,12 @@ function dealerLogic() {
   showCard(card, DEALER);
   updateScore(card, DEALER);
   showScore(DEALER);
+
+  // some rules for the bot to determine when it will stand
+  if (DEALER.score > 15) {
+    let winner = determineWinner();
+    showResult(winner);
+  }
 }
 
 // determine winner and who just won
@@ -324,40 +332,46 @@ function determineWinner() {
   if (YOU.score <= 21) {
     // IF YOUR SCORE IS UNDER OR EQUAL TO 21 AND GREATER THAN DEALER OR DEALER WENT BUST, YOU WIN
     if (YOU.score > DEALER.score || DEALER.score > 21) {
-      console.log("You won");
+      blackjackGame.wins++;
       winner = YOU;
     } else if (YOU.score < DEALER.score) {
-      console.log("You lost");
+      blackjackGame.losses++;
       winner = DEALER;
     } else if (YOU.score === DEALER.score) {
-      console.log("Its a tie");
+      blackjackGame.draws++;
     }
     // if you go bust but not dealer
   } else if (YOU.score > 21 && DEALER.score <= 21) {
-    console.log("You lost");
+    blackjackGame.losses++;
     winner = DEALER;
 
     // both YOU and DEALER bust
   } else if (YOU.score > 21 && DEALER.score > 21) {
-    console.log("Its a tie eeeek");
+    blackjackGame.draws++;
   }
 
-  console.log(`Winner is ${winner}`);
+  console.log(blackjackGame);
   return winner;
 }
 
 function showResult(winner) {
   let message, messageColor;
+  const wins = document.querySelector("#wins");
+  const draws = document.querySelector("#draws");
+  const losses = document.querySelector("#losses");
 
   if (winner === YOU) {
+    wins.textContent = blackjackGame.wins;
     message = "You won";
     messageColor = "green";
     winSound.play();
   } else if (winner === DEALER) {
+    losses.textContent = blackjackGame.losses;
     message = "You lost";
     messageColor = "red";
     lossSound.play();
   } else {
+    draws.textContent = blackjackGame.draws;
     message = "You drew";
     messageColor = "black";
   }
